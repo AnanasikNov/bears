@@ -1,15 +1,41 @@
-const MongoClient = require("mongodb").MongoClient;
+var mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost/all')
+var async = require("async")
+var data = require('./data.js').data
 
-const url = "mongodb://localhost:27017/";
-const mongoClient = new MongoClient(url);
-var data = require("./data.js").data
-// Подключаемся к серверу
-mongoClient.connect(function (err, client) {
-    // обращаемся к базе данных admin
-    const db = client.db("all");
-    db.dropDatabase();
-    var collection = db.collection("heroes");
-    collection.insertMany(data, function (err, result) {
-        client.close();
+async.series([
+        open,
+        dropDatabase,
+        requireModels,
+        createHeroes
+    ],
+    function(err,result){
+        mongoose.disconnect()
     })
-})
+
+function open(callback){
+    mongoose.connection.on("open",callback)
+}
+
+function dropDatabase(callback){
+    var db = mongoose.connection.db
+    db.dropDatabase(callback)
+}
+
+function createHeroes(callback){
+    async.each(data, function(heroData, callback){
+            var hero = new mongoose.models.Hero(heroData)
+            hero.save(callback)
+        },
+        callback)
+}
+
+function requireModels(callback){
+    require("./models/hero").Hero
+
+    async.each(Object.keys(mongoose.models),function(modelName){
+        mongoose.models[modelName].ensureIndexes(callback)
+    },
+        callback
+    )
+}
