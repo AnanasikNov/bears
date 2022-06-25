@@ -1,33 +1,36 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <header>         
-      <div class="logo">
-      <a href="/"> 
-      <img src="" width="70" />
-      </a>
-    </div>
-    <div class="menu">
-      <ul>
-        <% menu.forEach(function(hero){ %>
-          <li><a href="/heroes/<%=hero.nick%>"><%=hero.title%></a></li>
-          <% }) %>          
-      </ul>
-    </div>
-    <div class="tel"><a class="rmenu" href="/">Exit</a>
-    </div>
-  </header>
-</header>
-<title>
 
-</title>
-<link rel='stylesheet' href='/stylesheets/style.css' />
-<link href="/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
-<!-- <script src="/jquery/dist/jquery.js"></script> -->
-<script src="/bootstrap/dist/js/bootstrap.js"></script> </head>
+  <!DOCTYPE html>
+  <html>
+
+  <head>
+    <title>
+      <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <!-- <script src="/jquery/dist/jquery.js"></script> -->
+    <script src="/bootstrap/dist/js/bootstrap.js"></script>
   </head>
+
   <body>
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+      <div class="container-fluid">
+        <!-- <div class="menu"> -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Главная</a>
+          </li>
+          <% if(typeof nav=='object' && nav){ nav.forEach(function(item){ %>
+            <li class="nav-item">
+              <a class="nav-link" href="/heroes/<%=item.nick%>">
+                <%=item.title%>
+              </a>
+            </li>
+            <% })} %>
+        </ul>
+      </div>
+    </nav>
     <%- body %>
   </body>
-</html>
- <body>
+
+  </html>

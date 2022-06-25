@@ -9,9 +9,9 @@ var heroSchema = mongoose.Schema({
     },
     avatar: String,
     desc: String,
-    created:{
-        type:Date,
-        default:Date.now
+    created: {
+        type: Date,
+        default: Date.now
     }
 })
 
