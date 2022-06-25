@@ -602,4 +602,24 @@ iframe {
 // 1. Add the correct display in all browsers
 
 summary {
-  display: list-item4)ÀR¹I¹IÜcA     í         ð	  Ð ( ÀåËµO¤úP€Ò   ,"Ò Pú¤OµËå@H  )    c¼äÔ:Ø(     ‰ù********************************************************              ************************************************Ÿt          ÿ  †¾           ÿ ****************Rü     *
+  display: list-item; // 1
+  cursor: pointer;
+}
+
+
+// Progress
+//
+// Add the correct vertical alignment in Chrome, Firefox, and Opera.
+
+progress {
+  vertical-align: baseline;
+}
+
+
+// Hidden attribute
+//
+// Always hide an element with the `hidden` HTML attribute.
+
+[hidden] {
+  display: none !important;
+}

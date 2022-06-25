@@ -9,12 +9,12 @@
     </div>
     <div class="menu">
       <ul>
-        <li><a href="/ma">Mama</a></li>
-        <li><a href="/pa">Papa</a></li>
-        <li><a href="/son">Son</a></li>
+        <% menu.forEach(function(hero){ %>
+          <li><a href="/heroes/<%=hero.nick%>"><%=hero.title%></a></li>
+          <% }) %>          
       </ul>
     </div>
-    <div class="tel"><a class="rmenu" href="/exit">Exit</a>
+    <div class="tel"><a class="rmenu" href="/">Exit</a>
     </div>
   </header>
 </header>
@@ -23,7 +23,7 @@
 </title>
 <link rel='stylesheet' href='/stylesheets/style.css' />
 <link href="/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
-<script src="/jquery/dist/jquery.js"></script>
+<!-- <script src="/jquery/dist/jquery.js"></script> -->
 <script src="/bootstrap/dist/js/bootstrap.js"></script> </head>
   </head>
   <body>
@@ -31,4 +31,3 @@
   </body>
 </html>
  <body>
-
