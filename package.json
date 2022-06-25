@@ -1,5 +1,5 @@
 {
-  "name": "guac",
+  "name": "bears",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -8,17 +8,18 @@
   },
   "dependencies": {
     "async": "^3.2.3",
+    "body-parser": "^1.20.0",
     "connect-mongo": "^4.6.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "ejs-locals": "^1.0.2",
     "express": "~4.16.1",
-    "express-session": "^1.17.3",
+    "express-session": "^1.17.2",
     "http-errors": "~1.6.3",
     "mongodb": "^4.5.0",
-    "mongoose": "^6.4.0",
+    "mongoose": "^6.3.0",
     "morgan": "~1.9.1",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.18"
   }
 }

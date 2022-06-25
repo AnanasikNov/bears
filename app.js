@@ -3,15 +3,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var heroes = require('./routes/heroes');
-
-var routes = require('./routes/index');
-var users = require('./routes/users');
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/all')
-var session = require('express-session');
+var session = require("express-session")
 var MongoStore = require('connect-mongo');
 var Hero = require("./models/hero").Hero
+
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var heroes = require('./routes/heroes');
 
 var app = express();
 
@@ -19,7 +19,6 @@ var app = express();
 app.engine('ejs', require('ejs-locals'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.use('/heroes', heroes);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -39,9 +38,11 @@ app.use(function (req, res, next) {
 })
 
 app.use(require("./middleware/createMenu.js"))
+app.use(require("./middleware/createUser.js"))
 
-app.use('/', routes);
-app.use('/users', users);
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/heroes', heroes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -56,7 +57,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error', {title:'Ошибка'});
+  res.render('error', { title: 'Ошибка' });
 });
 
 module.exports = app;
